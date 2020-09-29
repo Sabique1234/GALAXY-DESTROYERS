@@ -31,7 +31,7 @@ var resetButton, gameOverMessage;
 function preload(){
 
   //LOADING IMAGES
-  blackBgImage=loadImage("images/blackBg.jpg");
+  //blackBgImage=loadImage("images/blackBg.jpg");
   
   spaceImg=loadImage("images/bg.jpg");
   playerImg=loadImage("images/player.png");
@@ -101,10 +101,10 @@ function setup(){
      space.scale = 2.5;
      space.y = space.height/2;
 
-     black=createSprite(200,200);
-     black.addImage(blackBgImage);
-     black.scale=2;
-     black.visible=false;
+     //black=createSprite(200,200);
+     //black.addImage(blackBgImage);
+     //black.scale=2;
+     //black.visible=false;
      
      player = createSprite(200, 365,20,20);
      player.addImage(playerImg);
@@ -257,12 +257,14 @@ galaxian1Group.setVelocityEach(0,0);
 galaxian2Group.setVelocityEach(0,0);
 galaxian3Group.setVelocityEach(0,0);
 
+space.velocityX=0;
+space.velocityY=0;
 }
 
 if(mousePressedOver(resetGame))
 {
   reset();
-  black.visible=false;
+  //black.visible=false;
 }
 
   //createGalaxian();
@@ -640,12 +642,13 @@ if(life.height<3)
 {
   resetGame.visible=true;
   reset();
+  life.visible=false;
 }
 
 if(life.height<7)
 {
   resetGame.visible=true;
-  black.visible=true;
+  //black.visible=true;
   life.visible=false;
 }
 
@@ -665,6 +668,7 @@ galaxian3Group.destroyEach();
 
 bulletGroup.destroyEach();
 
+space.velocityY=2;
 
 fill("lightblue");
 text("POINTS: "+ score, 10, 20);
