@@ -99,7 +99,7 @@ function setup(){
 
    canvas=createCanvas(windowWidth,windowHeight);
 
-     space = createSprite(displayWidth/2-160,displayHeight/2+200);
+     space = createSprite(windowWidth/2-160,windowHeight/2);
      space.addImage(spaceImg);
      space.scale = 2.5;
      space.y = space.height/2;
@@ -109,11 +109,11 @@ function setup(){
      //black.scale=2;
      //black.visible=false;
      
-     player = createSprite(displayWidth-600, displayHeight-50,20,20);
+     player = createSprite(windowWidth-600, windowHeight-50);
      player.addImage(playerImg);
      player.scale=0.5;
 
-     life=createSprite(displayWidth/2-630,displayHeight/2,5,displayHeight-500);
+     life=createSprite(windowWidth/2-630,windowHeight/2,5,windowHeight-500);
      // burst=createSprite(20,200,20,20);
 
      gameOver=createSprite(200,100);
@@ -124,7 +124,7 @@ function setup(){
 
 
 
-     resetGame=createSprite(displayWidth/2,displayHeight/2);
+     resetGame=createSprite(windowWidth/2,windowHeight/2);
      resetGame.addImage(resetButton);
      resetGame.scale=0.5;
      resetGame.visible=false;
@@ -534,7 +534,7 @@ function createGalaxian3() {
 
 function createBullet(x) {
   var bullet= createSprite(100, 100, 5, 10);
-  bullet.y = displayHeight-50;
+  bullet.y = windowHeight-50;
   bullet.x = player.x;                                           
   bullet.addImage(bulletImg);
   bullet.scale=0.3;
@@ -618,14 +618,14 @@ function createRock2(){
 }
 
 function reset(){
-  player.x=displayWidth/2;
-  player.y=displayHeight-50;
+  player.x=windowWidth/2;
+  player.y=windowHeight-50;
   player.x=World.mouseX;
   score=0;
   count=0;
   resetGame.visible=false;
 
-  life=createSprite(displayWidth/2-630,displayHeight/2,5,displayHeight-500);
+  life=createSprite(windowWidth/2-630,windowHeight/2,5,windowHeight-500);
 
   if(galaxianGroup.isTouching(player)){
     life.height = life.height * 50/160;
