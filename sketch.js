@@ -97,7 +97,7 @@ function preload(){
 
 function setup(){
 
-   createCanvas(windowWidth,windowHeight);
+   createCanvas(displayWidth/2-240,displayHeight/2+50);
 
      space = createSprite(displayWidth/2-160,displayHeight/2+200);
      space.addImage(spaceImg);
@@ -245,7 +245,7 @@ if(life.height<7)
 {
   resetGame.visible=true;
   //black.visible=true;
-  life.visible=false;
+  life.destroy();
 
 laserGroup.setVelocityEach(0,0);
 laserGroup2.setVelocityEach(0,0);
@@ -262,6 +262,23 @@ galaxian3Group.setVelocityEach(0,0);
 
 space.velocityX=0;
 space.velocityY=0;
+
+laserGroup.destroyEach();
+laserGroup2.destroyEach();
+laserGroup3.destroyEach();
+laserGroup4.destroyEach();
+
+rockGroup.destroyEach();
+rockGroup2.destroyEach();
+
+galaxianGroup.destroyEach();
+galaxian1Group.destroyEach();
+galaxian2Group.destroyEach();
+galaxian3Group.destroyEach();
+
+bulletGroup.destroyEach();
+
+
 }
 
 if(mousePressedOver(resetGame))
@@ -429,7 +446,7 @@ if(mousePressedOver(resetGame))
    
    var select_enemy = Math.round(random(0,3));
    
-   if (World.frameCount %80 == 0)
+   if (World.frameCount %50 == 0)
      {
      if (select_enemy == 0) 
      {
@@ -469,7 +486,7 @@ if(mousePressedOver(resetGame))
   fill("lightblue");
   text("POINTS: "+ score, 10, 20);
   fill("yellow");
-  text("DISTANCE COVERED: "+ count, 230, 20);
+  text("DISTANCE COVERED: "+ count, 240, 20);
 
 }
 
@@ -641,18 +658,19 @@ if(galaxian2Group.isTouching(player)){
   }
 
 
-if(life.height<3)
-{
-  resetGame.visible=true;
-  reset();
-  life.visible=false;
-}
+//if(life.height<3)
+//{
+  //resetGame.visible=true;
+  //reset();
+  //life.visible=false;
+//}
 
 if(life.height<7)
 {
   resetGame.visible=true;
   //black.visible=true;
-  life.visible=false;
+  life.destroy();
+  reset();
 }
 
 
@@ -676,7 +694,7 @@ space.velocityY=2;
 fill("lightblue");
 text("POINTS: "+ score, 10, 20);
 fill("yellow");
-text("DISTANCE COVERED: "+ count, 230, 20);
+text("DISTANCE COVERED: "+ count, 240, 20);
 
 
 }
