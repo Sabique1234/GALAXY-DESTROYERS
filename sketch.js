@@ -97,7 +97,7 @@ function preload(){
 
 function setup(){
 
-   canvas=createCanvas(displayWidth,displayHeight);
+   canvas=createCanvas(windowWidth,windowHeight);
 
      space = createSprite(displayWidth/2-160,displayHeight/2+200);
      space.addImage(spaceImg);
