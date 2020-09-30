@@ -97,7 +97,7 @@ function preload(){
 
 function setup(){
 
-   createCanvas(displayWidth/2-240,displayHeight/2+50);
+   canvas=createCanvas(displayWidth,displayHeight);
 
      space = createSprite(displayWidth/2-160,displayHeight/2+200);
      space.addImage(spaceImg);
@@ -109,11 +109,11 @@ function setup(){
      //black.scale=2;
      //black.visible=false;
      
-     player = createSprite(200, 365,20,20);
+     player = createSprite(displayWidth-600, displayHeight-50,20,20);
      player.addImage(playerImg);
      player.scale=0.5;
 
-     life=createSprite(12,200,5,100);
+     life=createSprite(displayWidth/2-630,displayHeight/2,5,displayHeight-500);
      // burst=createSprite(20,200,20,20);
 
      gameOver=createSprite(200,100);
@@ -124,7 +124,7 @@ function setup(){
 
 
 
-     resetGame=createSprite(200,200);
+     resetGame=createSprite(displayWidth/2,displayHeight/2);
      resetGame.addImage(resetButton);
      resetGame.scale=0.5;
      resetGame.visible=false;
@@ -366,7 +366,6 @@ if(mousePressedOver(resetGame))
        score = score + 1;
      } 
      else if (bulletGroup.isTouching(galaxian2Group)) 
-   
      {
        galaxian2Group.destroyEach();
        bulletGroup.destroyEach(); 
@@ -484,16 +483,16 @@ if(mousePressedOver(resetGame))
   drawSprites();
   
   fill("lightblue");
-  text("POINTS: "+ score, 10, 20);
+  text("POINTS: "+ score, displayWidth-1270, displayHeight-690);
   fill("yellow");
-  text("DISTANCE COVERED: "+ count, 240, 20);
+  text("DISTANCE COVERED: "+ count,displayWidth-170, displayHeight-690);
 
 }
 
 
 function createGalaxian() 
 {
-  galaxian = createSprite(Math.round(random(20, 380)), -50, 10, 10);
+  galaxian = createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)), -50, 10, 10);
   galaxian.addImage(enemyImg);
   speed=Math.round(random(5,10));
   galaxian.velocityY = speed;
@@ -503,7 +502,7 @@ function createGalaxian()
 }
 
 function createGalaxian1() {
-  galaxian1 = createSprite(Math.round(random(20, 380)), -50, 10, 10);
+  galaxian1 = createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)), -50, 10, 10);
   galaxian1.addImage(enemyImg2);
   galaxian1.scale=0.07;
   speed=Math.round(random(4,9));
@@ -514,7 +513,7 @@ function createGalaxian1() {
 
 function createGalaxian2() 
 {
-  galaxian2 = createSprite(Math.round(random(20, 380)), -50, 10, 10);
+  galaxian2 = createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)), -50, 10, 10);
   galaxian2.addImage(enemyImg3);
   galaxian2.scale=0.5;
   speed=Math.round(random(3,10));
@@ -524,7 +523,7 @@ function createGalaxian2()
 }
 
 function createGalaxian3() {
-  galaxian3=createSprite(Math.round(random(20,380)),-50,10,10);
+  galaxian3=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
   galaxian3.scale=0.3;
   galaxian3.addImage(enemyImg4);
   speed=Math.round(random(5,9));
@@ -535,7 +534,7 @@ function createGalaxian3() {
 
 function createBullet(x) {
   var bullet= createSprite(100, 100, 5, 10);
-  bullet.y = 330;
+  bullet.y = displayHeight-50;
   bullet.x = player.x;                                           
   bullet.addImage(bulletImg);
   bullet.scale=0.3;
@@ -555,7 +554,7 @@ function createBullet(x) {
   //}
 
 function createLaser(){
-  laser=createSprite(Math.round(random(20,200)),-50,10,10);
+  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg);
   speed=Math.round(random(10,20));
@@ -565,7 +564,7 @@ function createLaser(){
 }
 
 function createLaser2(){
-  laser=createSprite(Math.round(random(200,380)),-50,10,10);
+  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg2);
   speed=Math.round(random(10,20));
@@ -575,7 +574,7 @@ function createLaser2(){
 }
 
 function createLaser3(){
-  laser=createSprite(Math.round(random(150,330)),-50,10,10);
+  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg3);
   speed=Math.round(random(10,20));
@@ -585,7 +584,7 @@ function createLaser3(){
 }
 
 function createLaser4(){
-  laser=createSprite(Math.round(random(20,380)),-50,10,10);
+  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg4);
   speed=Math.round(random(10,20));
@@ -595,7 +594,7 @@ function createLaser4(){
 }
 
 function createRock(){
-  rock=createSprite(Math.round(random(20,380)),-50,10,10);
+  rock=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
   rock.scale=01;
   rock.addImage(rockImg);
   Yspeed=Math.round(random(10,20));
@@ -607,7 +606,7 @@ function createRock(){
 }
 
 function createRock2(){
-  rock=createSprite(Math.round(random(20,380)),-50,10,10);
+  rock=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
   rock.scale=01;
   rock.addImage(stoneImg);
   Yspeed=Math.round(random(10,20));
@@ -619,13 +618,14 @@ function createRock2(){
 }
 
 function reset(){
-  player.x=200;
-  player.y=365;
+  player.x=displayWidth/2;
+  player.y=displayHeight-50;
   player.x=World.mouseX;
   score=0;
   count=0;
   resetGame.visible=false;
-  life=createSprite(12,200,5,100);
+
+  life=createSprite(displayWidth/2-630,displayHeight/2,5,displayHeight-500);
 
   if(galaxianGroup.isTouching(player)){
     life.height = life.height * 50/160;
@@ -692,9 +692,9 @@ bulletGroup.destroyEach();
 space.velocityY=2;
 
 fill("lightblue");
-text("POINTS: "+ score, 10, 20);
-fill("yellow");
-text("DISTANCE COVERED: "+ count, 240, 20);
+  text("POINTS: "+ score, displayWidth-1270, displayHeight-690);
+  fill("yellow");
+  text("DISTANCE COVERED: "+ count,displayWidth-170, displayHeight-690);
 
 
 }
