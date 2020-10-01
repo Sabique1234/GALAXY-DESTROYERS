@@ -114,6 +114,8 @@ function setup(){
      player.scale=0.5;
 
      life=createSprite(windowWidth/2-630,windowHeight/2,5,windowHeight-500);
+
+
      // burst=createSprite(20,200,20,20);
 
      gameOver=createSprite(200,100);
@@ -240,6 +242,11 @@ if(galaxian2Group.isTouching(player)){
     life.shapeColor="red";
   }
 
+  if(rockGroup.isTouching(player)||rockGroup2.isTouching(player)&&life.height<60&&life.height>40)
+  {
+    life.height=windowHeight-500;
+  }
+
 
 if(life.height<7)
 {
@@ -278,7 +285,7 @@ galaxian3Group.destroyEach();
 
 bulletGroup.destroyEach();
 
-
+count=0;
 }
 
 if(mousePressedOver(resetGame))
