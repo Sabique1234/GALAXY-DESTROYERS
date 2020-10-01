@@ -92,6 +92,9 @@ function preload(){
 
   laserGunCannon=loadSound("sounds/laserguncannonshot.mp3");
   laserGunPew=loadSound("sounds/lasergun10.mp3");
+
+  zap=loadSound("sounds/laserzap2.mp3");
+  killed=loadSound("sounds/invaderkilled.wav")
 }
 
 
@@ -133,10 +136,10 @@ function setup(){
 
      
      
-     //life=createSprite(35,25);
-     //life.addImage(lifeImg);
-     //life.scale=0.1;
-     //life.visible=true;
+     //lifeBoost=createSprite(35,25);
+     //lifeBoost.addImage(lifeImg);
+     //lifeBoost.scale=0.1;
+
 
      //button=createSprite(20,360);
      //button.addImage(leftArrow);
@@ -176,6 +179,8 @@ function setup(){
      rockGroup=createGroup();
      rockGroup2=createGroup();
 
+     lifeBoostGroup=createGroup();
+      
      story=createSprite(200,200,20,20);
      story.addImage(storyImg);
      story.scale=0.3;
@@ -242,9 +247,11 @@ if(galaxian2Group.isTouching(player)){
     life.shapeColor="red";
   }
 
-  if(rockGroup.isTouching(player)||rockGroup2.isTouching(player)&&life.height<60&&life.height>40)
+  if(lifeBoostGroup.isTouching(player))
   {
     life.height=windowHeight-500;
+    lifeBoostGroup.destroyEach();
+    laserBolt.play();
   }
 
 
@@ -267,6 +274,8 @@ galaxian1Group.setVelocityEach(0,0);
 galaxian2Group.setVelocityEach(0,0);
 galaxian3Group.setVelocityEach(0,0);
 
+lifeBoostGroup.setVelocityEach(0,0);
+
 space.velocityX=0;
 space.velocityY=0;
 
@@ -284,6 +293,8 @@ galaxian2Group.destroyEach();
 galaxian3Group.destroyEach();
 
 bulletGroup.destroyEach();
+
+lifeBoostGroup.destroyEach();
 
 count=0;
 }
@@ -364,6 +375,7 @@ if(mousePressedOver(resetGame))
        galaxianGroup.destroyEach();
        bulletGroup.destroyEach();
        score = score + 2;
+       zap.play();
      }
       else if (bulletGroup.isTouching(galaxian1Group)) 
      
@@ -371,12 +383,14 @@ if(mousePressedOver(resetGame))
        galaxian1Group.destroyEach();
        bulletGroup.destroyEach();
        score = score + 1;
+       killed.play();
      } 
      else if (bulletGroup.isTouching(galaxian2Group)) 
      {
        galaxian2Group.destroyEach();
        bulletGroup.destroyEach(); 
        score = score + 2;
+       zap.play();
      } 
      else if (bulletGroup.isTouching(galaxian3Group)) 
      {
@@ -384,6 +398,7 @@ if(mousePressedOver(resetGame))
        galaxian3Group.destroyEach();
        bulletGroup.destroyEach();
        score = score + 1;
+       killed.play();
      }
    
      if(laserGroup.isTouching(player))
@@ -409,6 +424,11 @@ if(mousePressedOver(resetGame))
        laserGroup4.destroyEach();
        score=score-2;
        invader4.play();
+     }
+
+
+     if(World.frameCount%800==0){
+        createBoost();
      }
    
    //ROCK AS THE NON PLAYER CONTROL ELEMENT (ASTEROID)
@@ -624,6 +644,20 @@ function createRock2(){
   rockGroup2.add(rock);
 }
 
+function createBoost(){
+  boost=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  boost.scale=0.15;
+  boost.addImage(lifeImg);
+  Yspeed=Math.round(random(15,25));
+  Xspeed=Math.round(random(-10,10));
+  boost.velocityY = Yspeed;
+  boost.velocityX = Xspeed;
+  boost.lifetime =500;
+  lifeBoostGroup.add(boost);
+}
+
+
+
 function reset(){
   player.x=windowWidth/2;
   player.y=windowHeight-50;
@@ -695,6 +729,8 @@ galaxian2Group.destroyEach();
 galaxian3Group.destroyEach();
 
 bulletGroup.destroyEach();
+
+lifeBoostGroup.destroyEach();
 
 space.velocityY=2;
 
