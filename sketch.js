@@ -238,7 +238,7 @@ if(galaxian2Group.isTouching(player)){
   }
   
   if(life.height < 60 && life.height > 40){
-    life.shapeColor="yellow";
+    life.shapeColor="orange";
   }
   if(life.height<40 && life.height > 20){
     life.shapeColor ="orange";
@@ -499,13 +499,6 @@ if(mousePressedOver(resetGame))
    if(keyDown("space")){
      createBullet(player.x);
    }
-
-
-
-
-
-
-
 
   drawSprites();
   
