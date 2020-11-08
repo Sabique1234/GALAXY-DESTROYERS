@@ -504,9 +504,9 @@ if(mousePressedOver(resetGame))
   drawSprites();
   
   fill("lightblue");
-  text("POINTS: "+ score, windowWidth-1270, windowHeight-690);
+  text("POINTS: "+ score, windowWidth/2-600, windowHeight/2-270);
   fill("yellow");
-  text("DISTANCE COVERED: "+ count,windowWidth-170, windowHeight-690);
+  text("DISTANCE COVERED: "+ count,windowWidth/2+460, windowHeight/2-270);
 
 }
 
@@ -730,13 +730,9 @@ lifeBoostGroup.destroyEach();
 space.velocityY=2;
 
 
-  //POINT COLOR AS LIGHT BLUE
-  fill("lightblue");
-  //DISPLAYS THE SCORE
-  text("POINTS: "+ score, windowWidth-1270, windowHeight-690);
 
-  //DISTANCE COLOR AS YELLOW
+  fill("lightblue");
+  text("POINTS: "+ score, windowWidth/2-600, windowHeight/2-270);
   fill("yellow");
-  //DISPLAYS THE DISTANCE COVERED
-  text("DISTANCE COVERED: "+ count, windowWidth-170, windowHeight-690);
+  text("DISTANCE COVERED: "+ count,windowWidth/2+460, windowHeight/2-270);
 }
