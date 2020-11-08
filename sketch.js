@@ -100,7 +100,7 @@ function preload(){
 
 function setup(){
 
-   canvas=createCanvas(windowWidth,windowHeight);
+     createCanvas(windowWidth,windowHeight);
 
      space = createSprite(windowWidth/2-160,windowHeight/2);
      space.addImage(spaceImg);
@@ -492,7 +492,8 @@ if(mousePressedOver(resetGame))
      }
    }
    
-   count =count + Math.round(World.frameRate/60);
+   //SHOWS THE DISTANCE TRAVELLED BT THE PLAYER.
+   count = count + Math.round(World.frameRate/60);
    
        
   
@@ -503,16 +504,16 @@ if(mousePressedOver(resetGame))
   drawSprites();
   
   fill("lightblue");
-  text("POINTS: "+ score, displayWidth-1270, displayHeight-690);
+  text("POINTS: "+ score, windowWidth-1270, windowHeight-690);
   fill("yellow");
-  text("DISTANCE COVERED: "+ count,displayWidth-170, displayHeight-690);
+  text("DISTANCE COVERED: "+ count,windowWidth-170, windowHeight-690);
 
 }
 
 
 function createGalaxian() 
 {
-  galaxian = createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)), -50, 10, 10);
+  galaxian = createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)), -50, 10, 10);
   galaxian.addImage(enemyImg);
   speed=Math.round(random(5,10));
   galaxian.velocityY = speed;
@@ -522,7 +523,7 @@ function createGalaxian()
 }
 
 function createGalaxian1() {
-  galaxian1 = createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)), -50, 10, 10);
+  galaxian1 = createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)), -50, 10, 10);
   galaxian1.addImage(enemyImg2);
   galaxian1.scale=0.07;
   speed=Math.round(random(4,9));
@@ -533,7 +534,7 @@ function createGalaxian1() {
 
 function createGalaxian2() 
 {
-  galaxian2 = createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)), -50, 10, 10);
+  galaxian2 = createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)), -50, 10, 10);
   galaxian2.addImage(enemyImg3);
   galaxian2.scale=0.5;
   speed=Math.round(random(3,10));
@@ -543,7 +544,7 @@ function createGalaxian2()
 }
 
 function createGalaxian3() {
-  galaxian3=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  galaxian3=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   galaxian3.scale=0.3;
   galaxian3.addImage(enemyImg4);
   speed=Math.round(random(5,9));
@@ -574,7 +575,7 @@ function createBullet(x) {
   //}
 
 function createLaser(){
-  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  laser=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg);
   speed=Math.round(random(10,20));
@@ -584,7 +585,7 @@ function createLaser(){
 }
 
 function createLaser2(){
-  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  laser=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg2);
   speed=Math.round(random(10,20));
@@ -594,7 +595,7 @@ function createLaser2(){
 }
 
 function createLaser3(){
-  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  laser=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg3);
   speed=Math.round(random(10,20));
@@ -604,7 +605,7 @@ function createLaser3(){
 }
 
 function createLaser4(){
-  laser=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  laser=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   laser.scale=0.6;
   laser.addImage(laserImg4);
   speed=Math.round(random(10,20));
@@ -614,7 +615,7 @@ function createLaser4(){
 }
 
 function createRock(){
-  rock=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  rock=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   rock.scale=01;
   rock.addImage(rockImg);
   Yspeed=Math.round(random(10,20));
@@ -626,7 +627,7 @@ function createRock(){
 }
 
 function createRock2(){
-  rock=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  rock=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   rock.scale=01;
   rock.addImage(stoneImg);
   Yspeed=Math.round(random(10,20));
@@ -638,7 +639,7 @@ function createRock2(){
 }
 
 function createBoost(){
-  boost=createSprite(Math.round(random(displayWidth/2-600, displayWidth-50)),-50,10,10);
+  boost=createSprite(Math.round(random(windowWidth/2-600, windowWidth-50)),-50,10,10);
   boost.scale=0.15;
   boost.addImage(lifeImg);
   Yspeed=Math.round(random(15,25));
@@ -725,12 +726,17 @@ bulletGroup.destroyEach();
 
 lifeBoostGroup.destroyEach();
 
+
 space.velocityY=2;
 
-fill("lightblue");
-  text("POINTS: "+ score, displayWidth-1270, displayHeight-690);
+
+  //POINT COLOR AS LIGHT BLUE
+  fill("lightblue");
+  //DISPLAYS THE SCORE
+  text("POINTS: "+ score, windowWidth-1270, windowHeight-690);
+
+  //DISTANCE COLOR AS YELLOW
   fill("yellow");
-  text("DISTANCE COVERED: "+ count,displayWidth-170, displayHeight-690);
-
-
+  //DISPLAYS THE DISTANCE COVERED
+  text("DISTANCE COVERED: "+ count, windowWidth-170, windowHeight-690);
 }
